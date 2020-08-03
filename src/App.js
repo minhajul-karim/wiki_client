@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Sidebar from './components/Sidebar'
+import Entries from './components/Entries'
+import Home from './components/Home'
+import CreateEntry from './components/CreateEntry'
+import Entry from './components/Entry'
+import { Route, Switch } from 'react-router-dom'
+import Detail from './components/Detail'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="sidebar col-md-3">
+            <Sidebar />
+          </div>
+          <div className="main col-md-9">
+            <Switch>
+              <Route exact path="/" component={Entries} />
+              <Route path="/create-new-page" component={CreateEntry} />
+              <Route path="/random-page" component={Entry} />
+              <Route path="/detail" component={Detail} />
+            </Switch>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
