@@ -1,23 +1,14 @@
 import React from 'react'
+import NavItem from './NavItem'
+import BottomNav from './BottomNav'
 
 const Topnav = () => {
   return (
     <nav className="nav top-nav flex-column">
-      <a className="nav-link active" href="/">
-        Home
-      </a>
-      <a className="nav-link" href="/create-new-page">
-        Create a new page
-      </a>
-      <a className="nav-link" href="/random-page">
-        Random page
-      </a>
-      <a className="nav-link" href="/">
-        View code
-      </a>
-      <a className="nav-link" href="/">
-        Report a bug
-      </a>
+      <NavItem destination="/" navText="Home" />
+      <NavItem destination="/create-new-page" navText="Create a new page" />
+      <NavItem destination="/random-page" navText="Random page" />
+      <BottomNav />
     </nav>
   )
 }
