@@ -21,7 +21,7 @@ function App() {
               <Route exact path="/" component={Entries} />
               <Route path="/create-new-page" component={CreateEntry} />
               <Route path="/random-page" component={Entry} />
-              <Route path="/detail" component={Detail} />
+              <Route path="/:title" component={Detail} />
             </Switch>
           </div>
         </div>

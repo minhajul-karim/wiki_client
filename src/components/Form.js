@@ -9,7 +9,7 @@ class Form extends Component {
     return (
       <>
         <form action="" method="POST">
-          <div class="form-group">
+          <div className="form-group">
             <input
               type="text"
               name="q"
