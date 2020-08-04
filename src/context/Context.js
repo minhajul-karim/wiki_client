@@ -9,18 +9,20 @@ class EntriesProvider extends Component {
     super()
     this.state = {
       entries: [],
-      content: 'This is the default content',
+      content: 'Loading...',
     }
   }
 
   getContent = (title) => {
-    fetch(`http://localhost:8000/wikis/${title}`)
+    fetch(`http://localhost:8000/entries/${title}`)
       .then((response) => response.json())
-      .then((response) => this.setState(response))
+      .then((response) => {
+        this.setState({ content: response.content })
+      })
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:8000/wikis')
+    fetch('http://localhost:8000/entries')
       .then((response) => response.json())
       .then((response) =>
         this.setState({
@@ -46,4 +48,4 @@ class EntriesProvider extends Component {
 // Create a consumer
 const EntriesConsumer = EntriesContext.Consumer
 
-export { EntriesProvider, EntriesConsumer }
+export { EntriesContext, EntriesProvider, EntriesConsumer }

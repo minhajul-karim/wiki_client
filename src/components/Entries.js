@@ -7,10 +7,10 @@ class Entries extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
-          const { entries, getContent } = context
+          const { entries } = context
           return (
             <div className="mt-2">
-              <h1>Pages</h1>
+              <h1>Entries</h1>
               <hr />
               <ul>
                 {entries.map((item) => (

@@ -1,29 +1,25 @@
-import React from 'react'
-import { EntriesConsumer } from '../context/Context'
+import React, { Component } from 'react'
+import Content from './Content'
+import { EntriesContext, EntriesConsumer } from '../context/Context'
 
-const Detail = () => {
-  function createMarkup(html) {
-    return {
-      __html: html,
-    }
+class Detail extends Component {
+  componentDidMount = () => {
+    const title = this.props.match.params.title,
+      context = this.context
+    context.getContent(title)
   }
 
-  function Content(props) {
+  render() {
     return (
-      <div
-        className="mt-2"
-        dangerouslySetInnerHTML={createMarkup(props.html)}
-      />
+      <EntriesConsumer>
+        {(context) => {
+          return <Content html={context.content} />
+        }}
+      </EntriesConsumer>
     )
   }
-
-  return (
-    <EntriesConsumer>
-      {(context) => {
-        return <Content html={context.content} />
-      }}
-    </EntriesConsumer>
-  )
 }
+
+Detail.contextType = EntriesContext
 
 export default Detail
