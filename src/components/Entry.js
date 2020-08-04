@@ -1,5 +1,4 @@
 import React from 'react'
-import Detail from './Detail'
 import { Link } from 'react-router-dom'
 import { EntriesConsumer } from '../context/Context'
 

@@ -7,6 +7,7 @@ const BottomNav = () => {
         href="https://github.com/minhajul-karim/wiki_client"
         className="nav-link"
         target="_blank"
+        rel="noopener noreferrer"
       >
         View code
       </a>
@@ -14,6 +15,7 @@ const BottomNav = () => {
         href="https://github.com/minhajul-karim/wiki_client/issues"
         className="nav-link"
         target="_blank"
+        rel="noopener noreferrer"
       >
         Report a bug
       </a>

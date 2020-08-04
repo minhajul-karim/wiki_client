@@ -58,6 +58,15 @@ textarea {
   padding: 0.5rem 0rem;
 }
 
+.random-link {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.random-link:hover {
+  color: #0056b3;
+}
+
 @media all and (max-width: 767px) {
   .sidebar {
     height: 360px;
