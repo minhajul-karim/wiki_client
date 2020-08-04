@@ -7,17 +7,19 @@ class Form extends Component {
   }
   render() {
     return (
-      <div>
+      <>
         <form action="" method="POST">
-          <input
-            className="search"
-            type="text"
-            name="q"
-            placeholder="Search Encyclopedia"
-            autoComplete="off"
-          />
+          <div class="form-group">
+            <input
+              type="text"
+              name="q"
+              className="form-control search"
+              placeholder="Search Encyclopedia"
+              autoComplete="off"
+            />
+          </div>
         </form>
-      </div>
+      </>
     )
   }
 }

@@ -4,11 +4,11 @@ import TopNav from './TopNav'
 
 const Sidebar = () => {
   return (
-    <div>
+    <>
       <h1>Wiki</h1>
       <Form />
       <TopNav />
-    </div>
+    </>
   )
 }
 

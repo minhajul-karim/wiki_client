@@ -9,7 +9,12 @@ const Detail = () => {
   }
 
   function Content(props) {
-    return <div dangerouslySetInnerHTML={createMarkup(props.html)} />
+    return (
+      <div
+        className="mt-2"
+        dangerouslySetInnerHTML={createMarkup(props.html)}
+      />
+    )
   }
 
   return (

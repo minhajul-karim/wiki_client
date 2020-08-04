@@ -35,10 +35,21 @@ textarea {
 
 .sidebar {
   background-color: #f0f0f0;
-  height: calc(100vh - 20px);
+  height: 100vh;
   padding: 20px;
+  position: relative;
 }
 
 .sidebar h2 {
   margin-top: 5px;
+}
+
+.top-nav .nav-link {
+  padding: 0.5rem 0rem;
+}
+
+@media all and (max-width: 767px) {
+  .sidebar {
+    height: 360px;
+  }
 }

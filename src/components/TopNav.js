@@ -1,11 +1,8 @@
 import React from 'react'
-import NavItem from './NavItem'
-import { Link } from 'react-router-dom'
-import App from '../App'
 
 const Topnav = () => {
   return (
-    <nav className="nav flex-column mt-3">
+    <nav className="nav top-nav flex-column">
       <a className="nav-link active" href="/">
         Home
       </a>
@@ -14,6 +11,12 @@ const Topnav = () => {
       </a>
       <a className="nav-link" href="/random-page">
         Random page
+      </a>
+      <a className="nav-link" href="/">
+        View code
+      </a>
+      <a className="nav-link" href="/">
+        Report a bug
       </a>
     </nav>
   )
