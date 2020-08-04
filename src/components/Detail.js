@@ -1,13 +1,23 @@
 import React from 'react'
+import { EntriesConsumer } from '../context/Context'
 
 const Detail = () => {
+  function createMarkup(html) {
+    return {
+      __html: html,
+    }
+  }
+
+  function Content(props) {
+    return <div dangerouslySetInnerHTML={createMarkup(props.html)} />
+  }
+
   return (
-    <div>
-      <p>
-        This is detail page which shall contain the datials content of the
-        clicked item.
-      </p>
-    </div>
+    <EntriesConsumer>
+      {(context) => {
+        return <Content html={context.content} />
+      }}
+    </EntriesConsumer>
   )
 }
 
