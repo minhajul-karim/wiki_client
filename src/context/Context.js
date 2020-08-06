@@ -14,21 +14,25 @@ class EntriesProvider extends Component {
   }
 
   getContent = (title) => {
-    fetch(`http://localhost:8000/entries/${title}`)
+    fetch(`http://localhost:8000/api/entries/${title}`)
       .then((response) => response.json())
       .then((response) => {
         this.setState({ content: response.content })
       })
   }
 
+  foo = () => {
+    console.log('bar')
+  }
+
   componentDidMount = () => {
-    fetch('http://localhost:8000/entries')
+    fetch('http://localhost:8000/api/entries')
       .then((response) => response.json())
-      .then((response) =>
+      .then((response) => {
         this.setState({
           entries: response.entries,
         })
-      )
+      })
   }
 
   render() {
@@ -37,6 +41,7 @@ class EntriesProvider extends Component {
         value={{
           ...this.state,
           getContent: this.getContent,
+          foo: this.foo,
         }}
       >
         {this.props.children}

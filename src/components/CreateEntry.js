@@ -5,11 +5,14 @@ class CreateEntry extends Component {
     super()
     this.state = {
       title: '',
-      content: '#Your Awesome Title\nWrite in Markdown here',
+      content: '',
+      titleError: '',
+      contentError: '',
     }
 
     this.changeHandler = this.changeHandler.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
+    this.getCookie = this.getCookie.bind(this)
   }
 
   changeHandler = (event) => {
@@ -19,7 +22,61 @@ class CreateEntry extends Component {
 
   submitHandler = (event) => {
     event.preventDefault()
-    console.log('Submitted')
+
+    // Validate name
+    if (this.state.title.length === 0) {
+      this.setState({ titleError: 'This field is empty' })
+      return
+    } else {
+      this.setState({ titleError: '' })
+    }
+
+    // Validate content
+    if (this.state.content.length === 0) {
+      this.setState({ contentError: 'This field is empty' })
+      return
+    } else {
+      this.setState({ contentError: '' })
+    }
+
+    fetch('http://localhost:8000/api/entries/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': this.getCookie('csrftoken'),
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        content: this.state.content,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.page_exists) {
+          this.setState({ titleError: 'Page already exists' })
+          return
+        } else {
+          window.location.assign(
+            `${window.location.origin}/${this.state.title}`
+          )
+        }
+      })
+  }
+
+  getCookie = (name) => {
+    let cookieValue = null
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';')
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim()
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === name + '=') {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          break
+        }
+      }
+    }
+    return cookieValue
   }
 
   render() {
@@ -29,19 +86,21 @@ class CreateEntry extends Component {
         <hr />
         <form onSubmit={this.submitHandler}>
           <div className="form-group">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Name</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Enter title here"
+              placeholder="Name of your page"
               id="title"
               name="title"
               value={this.state.title}
               onChange={this.changeHandler}
+              required
             />
+            <small style={{ color: 'red' }}>{this.state.titleError}</small>
           </div>
           <div className="form-group">
-            <label htmlFor="content">Content</label>
+            <label htmlFor="content">Markdown content</label>
             <textarea
               className="form-control"
               id="content"
@@ -49,9 +108,9 @@ class CreateEntry extends Component {
               rows="10"
               value={this.state.content}
               onChange={this.changeHandler}
-            >
-              Write in Markdown here.
-            </textarea>
+              required
+            ></textarea>
+            <small style={{ color: 'red' }}>{this.state.contentError}</small>
           </div>
 
           <button
