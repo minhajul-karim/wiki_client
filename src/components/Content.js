@@ -1,8 +1,16 @@
 import React from 'react'
+import CreateEntry from './CreateEntry'
+import EditEntry from './EditEntry'
+import { Link } from 'react-router-dom'
 
 const Content = (props) => {
   return (
-    <div className="mt-2" dangerouslySetInnerHTML={createMarkup(props.html)} />
+    <>
+      <div
+        className="mt-2 content"
+        dangerouslySetInnerHTML={createMarkup(props.html)}
+      />
+    </>
   )
 }
 

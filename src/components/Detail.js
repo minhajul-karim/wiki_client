@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import Content from './Content'
+import { Link } from 'react-router-dom'
+import Markdown from 'markdown-to-jsx'
 import { EntriesContext, EntriesConsumer } from '../context/Context'
 
 class Detail extends Component {
+  // Displays content after reload
   componentDidMount = () => {
     const title = this.props.match.params.title,
       context = this.context
@@ -13,7 +15,15 @@ class Detail extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
-          return <Content html={context.content} />
+          let url = `${context.content.title}/edit`
+          return (
+            <>
+              <Link to={url} style={{ color: '#0652a3' }}>
+                Edit this page
+              </Link>
+              <Markdown>{context.content.content || ''}</Markdown>
+            </>
+          )
         }}
       </EntriesConsumer>
     )

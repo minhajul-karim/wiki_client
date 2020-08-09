@@ -9,20 +9,33 @@ class EntriesProvider extends Component {
     super()
     this.state = {
       entries: [],
-      content: 'Loading...',
+      content: {},
+      editPage: '',
     }
   }
 
   getContent = (title) => {
     fetch(`http://localhost:8000/api/entries/${title}`)
       .then((response) => response.json())
-      .then((response) => {
-        this.setState({ content: response.content })
+      .then((data) => {
+        this.setState({ content: data }, () =>
+          console.log('getContent', this.state)
+        )
       })
   }
 
-  foo = () => {
-    console.log('bar')
+  edit = (title) => {
+    fetch(`http://localhost:8000/api/entries/${title}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState(
+          {
+            titleOfEditPage: title,
+            conentOfEditPage: data,
+          },
+          () => console.log('state', this.state)
+        )
+      })
   }
 
   componentDidMount = () => {
@@ -41,7 +54,7 @@ class EntriesProvider extends Component {
         value={{
           ...this.state,
           getContent: this.getContent,
-          foo: this.foo,
+          edit: this.edit,
         }}
       >
         {this.props.children}

@@ -9,7 +9,7 @@ class Entries extends Component {
         {(context) => {
           const { entries } = context
           return (
-            <div className="mt-2">
+            <div className="mt-2 entries">
               <h1>Entries</h1>
               <hr />
               <ul>

@@ -2,7 +2,8 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Sidebar from './components/Sidebar'
 import Entries from './components/Entries'
-import CreateEntry from './components/CreateEntry'
+import CreateEntryForm from './components/CreateEntryForm'
+import EditEntryForm from './components/EditEntryForm'
 import { Route, Switch } from 'react-router-dom'
 import Detail from './components/Detail'
 
@@ -17,7 +18,8 @@ function App() {
           <div className="main col-md-9">
             <Switch>
               <Route exact path="/" component={Entries} />
-              <Route path="/create-new-page" component={CreateEntry} />
+              <Route path="/create" component={CreateEntryForm} />
+              <Route path="/:title/edit" component={EditEntryForm} />
               <Route path="/:title" component={Detail} />
             </Switch>
           </div>

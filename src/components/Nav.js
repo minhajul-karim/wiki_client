@@ -3,15 +3,15 @@ import NavItem from './NavItem'
 import BottomNav from './BottomNav'
 import RandomPage from './RandomPage'
 
-const Topnav = () => {
+const Nav = () => {
   return (
     <nav className="nav top-nav flex-column">
       <NavItem destination="/" navText="Home" />
-      <NavItem destination="/create-new-page" navText="Create a new page" />
+      <NavItem destination="/create" navText="Create a new page" />
       <RandomPage />
       <BottomNav />
     </nav>
   )
 }
 
-export default Topnav
+export default Nav

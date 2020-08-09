@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class CreateEntry extends Component {
+class CreateEntryForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -82,7 +82,7 @@ class CreateEntry extends Component {
   render() {
     return (
       <div className="mt-2">
-        <h1>Create a new entry</h1>
+        <h1>Create a new page</h1>
         <hr />
         <form onSubmit={this.submitHandler}>
           <div className="form-group">
@@ -126,4 +126,4 @@ class CreateEntry extends Component {
   }
 }
 
-export default CreateEntry
+export default CreateEntryForm

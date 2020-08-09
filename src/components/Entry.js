@@ -7,11 +7,11 @@ const Entry = (props) => {
   return (
     <EntriesConsumer>
       {(context) => {
-        const url = `/${props.name}`
+        const url = `/${name}`
         return (
           <div>
             <Link to={url}>
-              <li onClick={() => context.getContent(props.name)}>
+              <li onClick={() => context.getContent(name)}>
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </li>
             </Link>
