@@ -96,6 +96,9 @@ class EditEntryForm extends Component {
                     onChange={this.changeHandler}
                     required
                   />
+                  <small style={{ color: 'red' }}>
+                    {this.state.titleError}
+                  </small>
                 </div>
                 <div className="form-group">
                   <label htmlFor="content">Markdown content</label>
@@ -108,6 +111,9 @@ class EditEntryForm extends Component {
                     onChange={this.changeHandler}
                     required
                   ></textarea>
+                  <small style={{ color: 'red' }}>
+                    {this.state.contentError}
+                  </small>
                 </div>
 
                 <button

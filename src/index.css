@@ -47,10 +47,9 @@ textarea {
   padding: 10px;
 }
 
-.search {
-  width: 100%;
-  font-size: 15px;
-  line-height: 15px;
+.form-control {
+  border: 1px solid #2c343c !important;
+  border-radius: 0rem !important;
 }
 
 .sidebar {
