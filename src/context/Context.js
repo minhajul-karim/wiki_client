@@ -10,7 +10,6 @@ class EntriesProvider extends Component {
     this.state = {
       entries: [],
       content: {},
-      editPage: '',
     }
   }
 
@@ -18,23 +17,7 @@ class EntriesProvider extends Component {
     fetch(`http://localhost:8000/api/entries/${title}`)
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ content: data }, () =>
-          console.log('getContent', this.state)
-        )
-      })
-  }
-
-  edit = (title) => {
-    fetch(`http://localhost:8000/api/entries/${title}`)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState(
-          {
-            titleOfEditPage: title,
-            conentOfEditPage: data,
-          },
-          () => console.log('state', this.state)
-        )
+        this.setState({ content: data })
       })
   }
 
@@ -54,7 +37,6 @@ class EntriesProvider extends Component {
         value={{
           ...this.state,
           getContent: this.getContent,
-          edit: this.edit,
         }}
       >
         {this.props.children}
