@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { EntriesContext } from '../context/Context'
+import { withRouter } from 'react-router-dom'
 
 class RandomPage extends Component {
   clickHandler = () => {
@@ -9,7 +10,9 @@ class RandomPage extends Component {
       let randomIndex = Math.floor(Math.random() * entries.length)
       randomTitle = entries[randomIndex]
     }
-    window.location.assign(`${window.location.origin}/${randomTitle}`)
+    // Update state to render content of randomTitle and route to that URL
+    this.context.getContent(randomTitle)
+    this.props.history.push(`${randomTitle}`)
   }
 
   render() {
@@ -23,4 +26,4 @@ class RandomPage extends Component {
 
 RandomPage.contextType = EntriesContext
 
-export default RandomPage
+export default withRouter(RandomPage)

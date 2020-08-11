@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 class CreateEntryForm extends Component {
   constructor() {
@@ -56,9 +57,8 @@ class CreateEntryForm extends Component {
           this.setState({ titleError: 'Page already exists' })
           return
         } else {
-          window.location.assign(
-            `${window.location.origin}/${this.state.title}`
-          )
+          // Go to new page
+          this.props.history.push(`/${this.state.title}`)
         }
       })
   }
@@ -126,4 +126,4 @@ class CreateEntryForm extends Component {
   }
 }
 
-export default CreateEntryForm
+export default withRouter(CreateEntryForm)

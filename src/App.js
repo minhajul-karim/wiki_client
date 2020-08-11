@@ -19,8 +19,9 @@ function App() {
             <Switch>
               <Route exact path="/" component={Entries} />
               <Route path="/create" component={CreateEntryForm} />
+              <Route exact path="/:title" component={Detail} />
               <Route path="/:title/edit" component={EditEntryForm} />
-              <Route path="/:title" component={Detail} />
+              {/* <Route path="search?name=:title" component={EditEntryForm} /> */}
             </Switch>
           </div>
         </div>

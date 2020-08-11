@@ -80,15 +80,6 @@ textarea {
   color: #0056b3;
 }
 
-.entries a {
-  color: #4c4e4e;
-}
-
-.entries a:hover {
-  color: #000000;
-  text-decoration: none;
-}
-
 .btn-primary {
   background-color: #0f3660 !important;
   border-color: #0f3660 !important;
@@ -96,8 +87,8 @@ textarea {
 }
 
 .btn-primary:hover {
-  background-color: #615d6c !important;
-  border-color: #615d6c !important;
+  background-color: #7759cb !important;
+  border-color: #7759cb !important;
 }
 
 @media all and (max-width: 767px) {

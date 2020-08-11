@@ -9,7 +9,10 @@ class EntriesProvider extends Component {
     super()
     this.state = {
       entries: [],
-      content: {},
+      content: {
+        title: '',
+        content: '<p>Loading...</p>',
+      },
     }
   }
 
@@ -20,6 +23,32 @@ class EntriesProvider extends Component {
         this.setState({ content: data })
       })
   }
+
+  editEntries = (entries) => {
+    this.setState({
+      entries: entries,
+    })
+  }
+
+  getAllEntries = () => {
+    fetch('http://localhost:8000/api/entries')
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({
+          entries: response.entries,
+        })
+      })
+  }
+
+  // getSpecificEntries = (searchTerm) => {
+  //   fetch(`http://localhost:8000/api/entries/?name=${searchTerm}`)
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       this.setState({
+  //         entries: response.entries,
+  //       })
+  //     })
+  // }
 
   componentDidMount = () => {
     fetch('http://localhost:8000/api/entries')
@@ -37,6 +66,8 @@ class EntriesProvider extends Component {
         value={{
           ...this.state,
           getContent: this.getContent,
+          editEntries: this.editEntries,
+          getAllEntries: this.getAllEntries,
         }}
       >
         {this.props.children}
