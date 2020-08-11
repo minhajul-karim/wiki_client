@@ -9,48 +9,32 @@ class EntriesProvider extends Component {
     super()
     this.state = {
       entries: [],
-      content: {
-        title: '',
-        content: '<p>Loading...</p>',
-      },
+      content: {},
     }
   }
 
+  // Get content of a given page
   getContent = (title) => {
     fetch(`http://localhost:8000/api/entries/${title}`)
       .then((response) => response.json())
-      .then((data) => {
-        this.setState({ content: data })
-      })
+      .then(
+        (data) => {
+          console.log(data)
+          this.setState({ content: data })
+        },
+        () => console.log('Got content', this.state)
+      )
   }
 
+  // Edit list of entries
   editEntries = (entries) => {
     this.setState({
       entries: entries,
     })
   }
 
+  // Get all available entries
   getAllEntries = () => {
-    fetch('http://localhost:8000/api/entries')
-      .then((response) => response.json())
-      .then((response) => {
-        this.setState({
-          entries: response.entries,
-        })
-      })
-  }
-
-  // getSpecificEntries = (searchTerm) => {
-  //   fetch(`http://localhost:8000/api/entries/?name=${searchTerm}`)
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       this.setState({
-  //         entries: response.entries,
-  //       })
-  //     })
-  // }
-
-  componentDidMount = () => {
     fetch('http://localhost:8000/api/entries')
       .then((response) => response.json())
       .then((response) => {
@@ -66,8 +50,8 @@ class EntriesProvider extends Component {
         value={{
           ...this.state,
           getContent: this.getContent,
-          editEntries: this.editEntries,
           getAllEntries: this.getAllEntries,
+          editEntries: this.editEntries,
         }}
       >
         {this.props.children}

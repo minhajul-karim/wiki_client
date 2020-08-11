@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { EntriesContext } from '../context/Context'
+import { EntriesContext } from '../Context'
 import { withRouter } from 'react-router-dom'
 
 class RandomPage extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Markdown from 'markdown-to-jsx'
-import { EntriesContext, EntriesConsumer } from '../context/Context'
+import { EntriesContext, EntriesConsumer } from '../Context'
 
 class Detail extends Component {
   // Displays content after reload
@@ -15,7 +15,7 @@ class Detail extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
-          let url = `${context.content.title}/edit`
+          let url = `/edit/${context.content.title}`
           return (
             <>
               <Link to={url} style={{ color: '#0652a3' }}>

@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import Entry from './Entry'
-import { EntriesConsumer, EntriesContext } from '../context/Context'
+import { EntriesConsumer, EntriesContext } from '../Context'
 
-class Entries extends Component {
-  componentDidMount = () => {
-    this.context.getAllEntries()
-  }
-
+class SearchResults extends Component {
   render() {
     return (
       <EntriesConsumer>
@@ -14,7 +10,7 @@ class Entries extends Component {
           const { entries } = context
           return (
             <div className="mt-2 entries">
-              <h1>Entries</h1>
+              <h1>Search results</h1>
               <hr />
               <ul>
                 {entries.map((item) => (
@@ -29,6 +25,6 @@ class Entries extends Component {
   }
 }
 
-Entries.contextType = EntriesContext
+SearchResults.contextType = EntriesContext
 
-export default Entries
+export default SearchResults

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Entry from './Entry'
-import { EntriesConsumer, EntriesContext } from '../context/Context'
+import { EntriesConsumer, EntriesContext } from '../Context'
 
 class Entries extends Component {
   componentDidMount = () => {

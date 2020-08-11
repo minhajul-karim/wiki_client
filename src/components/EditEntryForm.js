@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { EntriesContext, EntriesConsumer } from '../context/Context'
+import { EntriesContext, EntriesConsumer } from '../Context'
 
 class EditEntryForm extends Component {
   constructor() {
@@ -16,8 +16,7 @@ class EditEntryForm extends Component {
   }
 
   componentDidMount = () => {
-    const context = this.context,
-      title = window.location.pathname.slice(1, -5)
+    const title = window.location.pathname.slice(6)
     fetch(`http://localhost:8000/api/entries/${title}`)
       .then((response) => response.json())
       .then((data) => {
@@ -68,7 +67,7 @@ class EditEntryForm extends Component {
       .then((data) => {
         console.log(data)
         if (data.file_updated) {
-          window.location.assign(`${window.location.origin}/${title}`)
+          window.location.assign(`${window.location.origin}/detail/${title}`)
         } else {
           return Error('File can not be saved.')
         }

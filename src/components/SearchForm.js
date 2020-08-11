@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { EntriesContext } from '../context/Context'
+import { withRouter } from 'react-router-dom'
+import { EntriesContext } from '../Context'
 
 class SearchForm extends Component {
   constructor() {
@@ -18,20 +19,18 @@ class SearchForm extends Component {
   submitHandler = (event) => {
     event.preventDefault()
     const name = this.state.name
-    console.log(`${window.location.origin}/search?name=${name}`)
-    window.location.assign(`${window.location.origin}/search?name=${name}`)
-    // fetch(`http://localhost:8000/api/entries/?name=${name}`)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.display) {
-    //       window.location.assign(`${window.location.origin}/${data.display}`)
-    //     } else if (data.entries) {
-    //       console.log(data.entries)
-    //       this.context.editEntries(data.entries)
-    //     } else if (!data.page_exists) {
-    //       console.log(`No page found`)
-    //     }
-    //   })
+    fetch(`http://localhost:8000/api/entries/?page=${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.display) {
+          this.props.history.push(`/detail/${data.display}`)
+        } else if (data.entries) {
+          this.context.editEntries(data.entries)
+          this.props.history.push(`/search/${name}`)
+        } else if (!data.page_exists) {
+          console.log(`No page found`)
+        }
+      })
   }
 
   render() {
@@ -60,4 +59,4 @@ class SearchForm extends Component {
 
 SearchForm.contextType = EntriesContext
 
-export default SearchForm
+export default withRouter(SearchForm)

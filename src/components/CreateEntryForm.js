@@ -23,44 +23,45 @@ class CreateEntryForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault()
+    this.props.history.push('/detail/abc')
 
     // Validate name
-    if (this.state.title.length === 0) {
-      this.setState({ titleError: 'This field is empty' })
-      return
-    } else {
-      this.setState({ titleError: '' })
-    }
+    // if (this.state.title.length === 0) {
+    //   this.setState({ titleError: 'This field is empty' })
+    //   return
+    // } else {
+    //   this.setState({ titleError: '' })
+    // }
 
-    // Validate content
-    if (this.state.content.length === 0) {
-      this.setState({ contentError: 'This field is empty' })
-      return
-    } else {
-      this.setState({ contentError: '' })
-    }
+    // // Validate content
+    // if (this.state.content.length === 0) {
+    //   this.setState({ contentError: 'This field is empty' })
+    //   return
+    // } else {
+    //   this.setState({ contentError: '' })
+    // }
 
-    fetch('http://localhost:8000/api/entries/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': this.getCookie('csrftoken'),
-      },
-      body: JSON.stringify({
-        title: this.state.title,
-        content: this.state.content,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.page_exists) {
-          this.setState({ titleError: 'Page already exists' })
-          return
-        } else {
-          // Go to new page
-          this.props.history.push(`/${this.state.title}`)
-        }
-      })
+    // fetch('http://localhost:8000/api/entries/', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'X-CSRFToken': this.getCookie('csrftoken'),
+    //   },
+    //   body: JSON.stringify({
+    //     title: this.state.title,
+    //     content: this.state.content,
+    //   }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.page_exists) {
+    //       this.setState({ titleError: 'Page already exists' })
+    //       return
+    //     } else {
+    //       // Go to new page
+    //       this.props.history.push(`/detail/${this.state.title}`)
+    //     }
+    //   })
   }
 
   getCookie = (name) => {
@@ -95,7 +96,6 @@ class CreateEntryForm extends Component {
               name="title"
               value={this.state.title}
               onChange={this.changeHandler}
-              required
             />
             <small style={{ color: 'red' }}>{this.state.titleError}</small>
           </div>
@@ -108,7 +108,6 @@ class CreateEntryForm extends Component {
               rows="10"
               value={this.state.content}
               onChange={this.changeHandler}
-              required
             ></textarea>
             <small style={{ color: 'red' }}>{this.state.contentError}</small>
           </div>
