@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Prompt } from 'react-router-dom'
 import { EntriesContext, EntriesConsumer } from '../Context'
 
 class EditEntryForm extends Component {
@@ -23,6 +24,7 @@ class EditEntryForm extends Component {
         this.setState({
           title: data.title,
           content: data.content,
+          formChanged: false,
         })
       })
   }
@@ -30,6 +32,7 @@ class EditEntryForm extends Component {
   changeHandler = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
+      formChanged: true,
     })
   }
 
@@ -80,6 +83,9 @@ class EditEntryForm extends Component {
         {(context) => {
           return (
             <div className="mt-2">
+              {this.state.formChanged && (
+                <Prompt message="You haven't saved your changes" />
+              )}
               <h1>Edit page</h1>
               <hr />
               <form onSubmit={this.submitHandler}>

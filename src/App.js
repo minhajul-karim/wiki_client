@@ -20,11 +20,11 @@ function App() {
           <div className="main col-md-9">
             <Switch>
               <Route exact path="/" component={Entries} />
-              <Route path="/create" component={CreateEntryForm} />
               <Route path="/edit/:title" component={EditEntryForm} />
               <Route path="/search/:title" component={SearchResults} />
               <Route path="/detail/:title" component={Detail} />
-              <Route path="*" component={NotFound} />
+              <Route path="/create" component={CreateEntryForm} />
+              <Route component={NotFound} />
             </Switch>
           </div>
         </div>

@@ -11,8 +11,8 @@ class RandomPage extends Component {
       randomTitle = entries[randomIndex]
     }
     // Update state to render content of randomTitle and route to that URL
-    this.context.getContent(randomTitle)
-    this.props.history.push(`${randomTitle}`)
+    // this.context.getContent(randomTitle)
+    this.props.history.push('detail/bangladesh')
   }
 
   render() {

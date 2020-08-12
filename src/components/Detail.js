@@ -4,7 +4,6 @@ import Markdown from 'markdown-to-jsx'
 import { EntriesContext, EntriesConsumer } from '../Context'
 
 class Detail extends Component {
-  // Displays content after reload
   componentDidMount = () => {
     const title = this.props.match.params.title,
       context = this.context
@@ -15,10 +14,12 @@ class Detail extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
-          let url = `/edit/${context.content.title}`
           return (
             <>
-              <Link to={url} style={{ color: '#0652a3' }}>
+              <Link
+                to={`/edit/${context.content.title}`}
+                style={{ color: '#0652a3' }}
+              >
                 Edit this page
               </Link>
               <Markdown>{context.content.content || ''}</Markdown>

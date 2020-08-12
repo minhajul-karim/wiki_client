@@ -19,7 +19,6 @@ class EntriesProvider extends Component {
       .then((response) => response.json())
       .then(
         (data) => {
-          console.log(data)
           this.setState({ content: data })
         },
         () => console.log('Got content', this.state)
