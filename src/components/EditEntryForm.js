@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Prompt } from 'react-router-dom'
+import { withRouter, Prompt } from 'react-router-dom'
 
 class EditEntryForm extends Component {
   constructor() {
@@ -9,6 +9,7 @@ class EditEntryForm extends Component {
       content: '',
       titleError: '',
       contentError: '',
+      formChanged: false,
     }
 
     this.changeHandler = this.changeHandler.bind(this)
@@ -23,7 +24,6 @@ class EditEntryForm extends Component {
         this.setState({
           title: data.title,
           content: data.content,
-          formChanged: false,
         })
       })
   }
@@ -68,7 +68,7 @@ class EditEntryForm extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.file_updated) {
-          window.location.assign(`${window.location.origin}/detail/${title}`)
+          this.props.history.push(`/detail/${title}`)
         } else {
           return Error('File can not be saved.')
         }
@@ -80,7 +80,14 @@ class EditEntryForm extends Component {
       <div className="mt-2">
         <Prompt
           when={this.state.formChanged}
-          message="You haven't saved your changes"
+          message={(location, action) => {
+            if (action === 'POP') {
+              return "You haven't saved your changes."
+            }
+            return location.pathname.endsWith(`${this.state.title}`)
+              ? true
+              : 'Are you sure you want to leave?'
+          }}
         />
         <h1>Edit page</h1>
         <hr />
@@ -126,4 +133,4 @@ class EditEntryForm extends Component {
   }
 }
 
-export default EditEntryForm
+export default withRouter(EditEntryForm)

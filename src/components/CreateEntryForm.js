@@ -88,7 +88,14 @@ class CreateEntryForm extends Component {
       <div className="mt-2">
         <Prompt
           when={this.state.formChanged}
-          message="You haven't saved your changes"
+          message={(location, action) => {
+            if (action === 'POP') {
+              return "You haven't saved your changes."
+            }
+            return location.pathname.endsWith(`${this.state.title}`)
+              ? true
+              : 'Are you sure you want to leave?'
+          }}
         />
         <h1>Create a new page</h1>
         <hr />
@@ -103,6 +110,7 @@ class CreateEntryForm extends Component {
               name="title"
               value={this.state.title}
               onChange={this.changeHandler}
+              required
             />
             <small style={{ color: 'red' }}>{this.state.titleError}</small>
           </div>
@@ -115,6 +123,7 @@ class CreateEntryForm extends Component {
               rows="10"
               value={this.state.content}
               onChange={this.changeHandler}
+              required
             ></textarea>
             <small style={{ color: 'red' }}>{this.state.contentError}</small>
           </div>
