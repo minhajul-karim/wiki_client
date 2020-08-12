@@ -60,7 +60,8 @@ class CreateEntryForm extends Component {
           return
         } else {
           // Go to new page
-          this.props.history.push(`/detail/${this.state.title}`)
+          let url = `/detail/${this.state.title}`.toLowerCase()
+          this.props.history.push(url)
         }
       })
   }
@@ -74,7 +75,9 @@ class CreateEntryForm extends Component {
             if (action === 'POP') {
               return "You haven't saved your changes."
             }
-            return location.pathname.endsWith(`${this.state.title}`)
+            return location.pathname.endsWith(
+              `${this.state.title}`.toLowerCase()
+            )
               ? true
               : 'Are you sure you want to leave?'
           }}

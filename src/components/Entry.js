@@ -8,10 +8,13 @@ const Entry = (props) => {
     props.history.push(`/detail/${name}`)
   }
 
+  // Convert a name into title case
+  const title = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+
   return (
     <div>
       <li className="nav-item" onClick={clickHandler}>
-        {name.charAt(0).toUpperCase() + name.slice(1)}
+        {title(name)}
       </li>
     </div>
   )

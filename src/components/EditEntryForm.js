@@ -68,7 +68,10 @@ class EditEntryForm extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.file_updated) {
-          this.props.history.push(`/detail/${title}`)
+          // Go to the updated page
+          let url = `/detail/${this.state.title}`.toLowerCase()
+          console.log(url)
+          this.props.history.push(url)
         } else {
           return Error('File can not be saved.')
         }
@@ -84,7 +87,9 @@ class EditEntryForm extends Component {
             if (action === 'POP') {
               return "You haven't saved your changes."
             }
-            return location.pathname.endsWith(`${this.state.title}`)
+            return location.pathname.endsWith(
+              `${this.state.title}`.toLowerCase()
+            )
               ? true
               : 'Are you sure you want to leave?'
           }}
