@@ -10,7 +10,7 @@ const Entry = (props) => {
 
   return (
     <div>
-      <li onClick={clickHandler}>
+      <li className="nav-item" onClick={clickHandler}>
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </li>
     </div>

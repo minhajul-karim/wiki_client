@@ -86,9 +86,10 @@ class CreateEntryForm extends Component {
   render() {
     return (
       <div className="mt-2">
-        {this.state.formChanged && (
-          <Prompt message="You haven't saved your changes" />
-        )}
+        <Prompt
+          when={this.state.formChanged}
+          message="You haven't saved your changes"
+        />
         <h1>Create a new page</h1>
         <hr />
         <form onSubmit={this.submitHandler}>

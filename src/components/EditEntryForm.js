@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Prompt } from 'react-router-dom'
-import { EntriesContext, EntriesConsumer } from '../Context'
 
 class EditEntryForm extends Component {
   constructor() {
@@ -68,7 +67,6 @@ class EditEntryForm extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         if (data.file_updated) {
           window.location.assign(`${window.location.origin}/detail/${title}`)
         } else {
@@ -79,64 +77,53 @@ class EditEntryForm extends Component {
 
   render() {
     return (
-      <EntriesConsumer>
-        {(context) => {
-          return (
-            <div className="mt-2">
-              {this.state.formChanged && (
-                <Prompt message="You haven't saved your changes" />
-              )}
-              <h1>Edit page</h1>
-              <hr />
-              <form onSubmit={this.submitHandler}>
-                <div className="form-group">
-                  <label htmlFor="title">Name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name of your page"
-                    id="title"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.changeHandler}
-                    required
-                  />
-                  <small style={{ color: 'red' }}>
-                    {this.state.titleError}
-                  </small>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="content">Markdown content</label>
-                  <textarea
-                    className="form-control"
-                    id="content"
-                    name="content"
-                    rows="10"
-                    value={this.state.content}
-                    onChange={this.changeHandler}
-                    required
-                  ></textarea>
-                  <small style={{ color: 'red' }}>
-                    {this.state.contentError}
-                  </small>
-                </div>
+      <div className="mt-2">
+        <Prompt
+          when={this.state.formChanged}
+          message="You haven't saved your changes"
+        />
+        <h1>Edit page</h1>
+        <hr />
+        <form onSubmit={this.submitHandler}>
+          <div className="form-group">
+            <label htmlFor="title">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Name of your page"
+              id="title"
+              name="title"
+              value={this.state.title}
+              onChange={this.changeHandler}
+              required
+            />
+            <small style={{ color: 'red' }}>{this.state.titleError}</small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="content">Markdown content</label>
+            <textarea
+              className="form-control"
+              id="content"
+              name="content"
+              rows="10"
+              value={this.state.content}
+              onChange={this.changeHandler}
+              required
+            ></textarea>
+            <small style={{ color: 'red' }}>{this.state.contentError}</small>
+          </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onSubmit={this.submitHandler}
-                >
-                  Save
-                </button>
-              </form>
-            </div>
-          )
-        }}
-      </EntriesConsumer>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onSubmit={this.submitHandler}
+          >
+            Save
+          </button>
+        </form>
+      </div>
     )
   }
 }
-
-EditEntryForm.contextType = EntriesContext
 
 export default EditEntryForm
