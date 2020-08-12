@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 const Entry = (props) => {
   const { name } = props
@@ -13,9 +13,9 @@ const Entry = (props) => {
 
   return (
     <div>
-      <li className="nav-item" onClick={clickHandler}>
-        {title(name)}
-      </li>
+      <Link to={`/detail/${name}`}>
+        <li className="nav-item">{title(name)}</li>
+      </Link>
     </div>
   )
 }

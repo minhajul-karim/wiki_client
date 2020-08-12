@@ -70,7 +70,6 @@ class EditEntryForm extends Component {
         if (data.file_updated) {
           // Go to the updated page
           let url = `/detail/${this.state.title}`.toLowerCase()
-          console.log(url)
           this.props.history.push(url)
         } else {
           return Error('File can not be saved.')

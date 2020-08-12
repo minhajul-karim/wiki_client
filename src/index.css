@@ -66,27 +66,11 @@ textarea {
 .top-nav .nav-link {
   color: #fdfffc;
   padding: 0.5rem 0rem;
+  cursor: pointer;
 }
 
 .top-nav .nav-link:hover {
   color: #e3e3e3;
-}
-
-.nav-item {
-  color: #3498db;
-  cursor: pointer;
-}
-
-.nav-item:hover {
-  color: #2980b9;
-}
-
-.random-link {
-  cursor: pointer;
-}
-
-.random-link:hover {
-  color: #0056b3;
 }
 
 .btn-primary {
