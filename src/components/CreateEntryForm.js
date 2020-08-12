@@ -14,7 +14,6 @@ class CreateEntryForm extends Component {
 
     this.changeHandler = this.changeHandler.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
-    this.getCookie = this.getCookie.bind(this)
   }
 
   changeHandler = (event) => {
@@ -48,7 +47,6 @@ class CreateEntryForm extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': this.getCookie('csrftoken'),
       },
       body: JSON.stringify({
         title: this.state.title,
@@ -65,22 +63,6 @@ class CreateEntryForm extends Component {
           this.props.history.push(`/detail/${this.state.title}`)
         }
       })
-  }
-
-  getCookie = (name) => {
-    let cookieValue = null
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';')
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim()
-        // Does this cookie string begin with the name we want?
-        if (cookie.substring(0, name.length + 1) === name + '=') {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-          break
-        }
-      }
-    }
-    return cookieValue
   }
 
   render() {
