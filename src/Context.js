@@ -10,19 +10,17 @@ class EntriesProvider extends Component {
     this.state = {
       entries: [],
       content: {},
+      pageExists: false,
     }
   }
 
   // Get content of a given page
   getContent = (title) => {
-    fetch(`http://localhost:8000/api/entries/${title}`)
+    fetch(`https://wiki-rest-api.herokuapp.com/api/entries/${title}`)
       .then((response) => response.json())
-      .then(
-        (data) => {
-          this.setState({ content: data })
-        },
-        () => console.log('Got content', this.state)
-      )
+      .then((data) => {
+        this.setState({ content: data })
+      })
   }
 
   // Edit list of entries
@@ -34,13 +32,17 @@ class EntriesProvider extends Component {
 
   // Get all available entries
   getAllEntries = () => {
-    fetch('http://localhost:8000/api/entries')
+    fetch('https://wiki-rest-api.herokuapp.com/api/entries')
       .then((response) => response.json())
       .then((response) => {
         this.setState({
           entries: response.entries,
         })
       })
+  }
+
+  pageFound = (status) => {
+    this.setState({ pageExists: status })
   }
 
   render() {
@@ -51,6 +53,7 @@ class EntriesProvider extends Component {
           getContent: this.getContent,
           getAllEntries: this.getAllEntries,
           editEntries: this.editEntries,
+          pageFound: this.pageFound,
         }}
       >
         {this.props.children}

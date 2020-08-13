@@ -43,7 +43,7 @@ class CreateEntryForm extends Component {
       this.setState({ contentError: '' })
     }
 
-    fetch('http://localhost:8000/api/entries/', {
+    fetch('https://wiki-rest-api.herokuapp.com/api/entries/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

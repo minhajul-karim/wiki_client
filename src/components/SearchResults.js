@@ -7,16 +7,20 @@ class SearchResults extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
-          const { entries } = context
+          const { entries, pageExists } = context
           return (
             <div className="mt-2 entries">
               <h1>Search results</h1>
               <hr />
-              <ul>
-                {entries.map((item) => (
-                  <Entry key={item} name={item} />
-                ))}
-              </ul>
+              {pageExists ? (
+                <ul>
+                  {entries.map((item) => (
+                    <Entry key={item} name={item} />
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-center">Sorry, no result found!</p>
+              )}
             </div>
           )
         }}

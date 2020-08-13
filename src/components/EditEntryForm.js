@@ -18,7 +18,7 @@ class EditEntryForm extends Component {
 
   componentDidMount = () => {
     const title = window.location.pathname.slice(6)
-    fetch(`http://localhost:8000/api/entries/${title}`)
+    fetch(`https://wiki-rest-api.herokuapp.com/api/entries/${title}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -55,7 +55,7 @@ class EditEntryForm extends Component {
       this.setState({ contentError: '' })
     }
 
-    fetch(`http://localhost:8000/api/entries/${title}`, {
+    fetch(`https://wiki-rest-api.herokuapp.com/api/entries/${title}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

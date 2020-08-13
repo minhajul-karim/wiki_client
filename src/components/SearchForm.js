@@ -18,17 +18,21 @@ class SearchForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault()
-    const name = this.state.name
-    fetch(`http://localhost:8000/api/entries/?page=${name}`)
+    const name = this.state.name,
+      { pageFound, editEntries } = this.context
+    fetch(`https://wiki-rest-api.herokuapp.com/api/entries/?page=${name}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.display) {
+          pageFound(true)
           this.props.history.push(`/detail/${data.display}`)
         } else if (data.entries) {
-          this.context.editEntries(data.entries)
+          editEntries(data.entries)
+          pageFound(true)
           this.props.history.push(`/search/${name}`)
         } else if (!data.page_exists) {
-          console.log(`No page found`)
+          pageFound(false)
+          this.props.history.push(`/search/${name}`)
         }
       })
   }
