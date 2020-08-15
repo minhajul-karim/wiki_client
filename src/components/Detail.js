@@ -14,6 +14,8 @@ class Detail extends Component {
     return (
       <EntriesConsumer>
         {(context) => {
+          const pageShouldBeLoaded = this.props.match.params.title,
+            pageIsLoading = context.content.title
           return (
             <>
               <Link
@@ -22,7 +24,11 @@ class Detail extends Component {
               >
                 Edit this page
               </Link>
-              <Markdown>{context.content.content || ''}</Markdown>
+              {pageShouldBeLoaded === pageIsLoading ? (
+                <Markdown>{context.content.content || ''}</Markdown>
+              ) : (
+                <p className="mt-3">Loading...</p>
+              )}
             </>
           )
         }}
