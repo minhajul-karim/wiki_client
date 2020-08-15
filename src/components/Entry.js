@@ -9,7 +9,7 @@ const Entry = (props) => {
 
   return (
     <div>
-      <Link to={`/detail/${name}`}>
+      <Link to={`/wiki/${name}`}>
         <li className="nav-item">{title(name)}</li>
       </Link>
     </div>

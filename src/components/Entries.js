@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Entry from './Entry'
 import { EntriesConsumer, EntriesContext } from '../Context'
 

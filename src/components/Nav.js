@@ -7,7 +7,7 @@ const Nav = () => {
   return (
     <nav className="nav top-nav flex-column">
       <NavItem destination="/" navText="Home" />
-      <NavItem destination="/create" navText="Create a new page" />
+      <NavItem destination="/create" navText="Create new page" />
       <RandomPage />
       <BottomNav />
     </nav>

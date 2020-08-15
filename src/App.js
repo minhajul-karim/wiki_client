@@ -22,7 +22,7 @@ function App() {
               <Route exact path="/" component={Entries} />
               <Route path="/edit/:title" component={EditEntryForm} />
               <Route path="/search/:title" component={SearchResults} />
-              <Route path="/detail/:title" component={Detail} />
+              <Route path="/wiki/:title" component={Detail} />
               <Route path="/create" component={CreateEntryForm} />
               <Route component={NotFound} />
             </Switch>
