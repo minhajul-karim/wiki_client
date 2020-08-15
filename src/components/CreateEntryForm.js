@@ -60,7 +60,7 @@ class CreateEntryForm extends Component {
           return
         } else {
           // Go to new page
-          let url = `/detail/${this.state.title}`.toLowerCase()
+          let url = `/wiki/${this.state.title}`.toLowerCase()
           this.props.history.push(url)
         }
       })

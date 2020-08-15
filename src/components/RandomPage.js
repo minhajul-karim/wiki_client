@@ -12,7 +12,7 @@ class RandomPage extends Component {
     }
     // Update state to render content of randomTitle and route to that URL
     this.context.getContent(randomTitle)
-    this.props.history.push(`/detail/${randomTitle}`)
+    this.props.history.push(`/wiki/${randomTitle}`)
   }
 
   render() {

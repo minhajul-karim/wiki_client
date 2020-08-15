@@ -69,7 +69,7 @@ class EditEntryForm extends Component {
       .then((data) => {
         if (data.file_updated) {
           // Go to the updated page
-          let url = `/detail/${this.state.title}`.toLowerCase()
+          let url = `/wiki/${this.state.title}`.toLowerCase()
           this.props.history.push(url)
         } else {
           return Error('File can not be saved.')

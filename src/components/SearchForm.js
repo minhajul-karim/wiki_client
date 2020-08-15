@@ -25,7 +25,7 @@ class SearchForm extends Component {
       .then((data) => {
         if (data.display) {
           pageFound(true)
-          this.props.history.push(`/detail/${data.display}`)
+          this.props.history.push(`/wiki/${data.display}`)
         } else if (data.entries) {
           editEntries(data.entries)
           pageFound(true)
