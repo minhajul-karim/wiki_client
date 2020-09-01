@@ -44,6 +44,7 @@ textarea {
 }
 
 .main {
+  background: #f7f5fb;
   padding: 10px;
 }
 
@@ -53,7 +54,7 @@ textarea {
 }
 
 .sidebar {
-  background-color: #615d6c;
+  background-color: #000;
   min-height: 100vh;
   padding: 20px;
   position: relative;
@@ -74,8 +75,8 @@ textarea {
 }
 
 .btn-primary {
-  background-color: #0f3660 !important;
-  border-color: #0f3660 !important;
+  background-color: #009fb7 !important;
+  border-color: #009fb7 !important;
   border-radius: 0rem !important;
 }
 
