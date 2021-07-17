@@ -22,12 +22,16 @@ class Detail extends Component {
                 to={`/edit/${context.content.title}`}
                 style={{ color: '#0652a3' }}
               >
-                Edit this page
+                {pageShouldBeLoaded === pageIsLoading && 'Edit this page'}
               </Link>
               {pageShouldBeLoaded === pageIsLoading ? (
                 <Markdown>{context.content.content || ''}</Markdown>
               ) : (
-                <p className="mt-3">Loading...</p>
+                <div className="spinner-container spinner-container-details">
+                  <div className="spinner-border foo-bar" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
               )}
             </>
           )

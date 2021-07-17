@@ -12,14 +12,25 @@ class Entries extends Component {
       <EntriesConsumer>
         {(context) => {
           const { entries } = context
+          console.log(entries)
           return (
             <div className="mt-2 entries">
               <h1>Entries</h1>
               <hr />
               <ul>
-                {entries.map((item) => (
-                  <Entry key={item} name={item} />
-                ))}
+                {
+                  entries.length > 0 ? (
+                    entries.map((item) => (
+                      <Entry key={item} name={item} />
+                    ))
+                  ) : (
+                    <div className="spinner-container spinner-container-home">
+                      <div className="spinner-border foo-bar" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  )
+                }
               </ul>
             </div>
           )

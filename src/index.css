@@ -85,6 +85,21 @@ textarea {
   border-color: #7759cb !important;
 }
 
+.spinner-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-container-details {
+  height: calc(100vh - 100px);
+}
+
+.spinner-container-home {
+  height: calc(100vh - 150px);
+}
+
 @media all and (max-width: 767px) {
   .sidebar {
     min-height: 360px;
