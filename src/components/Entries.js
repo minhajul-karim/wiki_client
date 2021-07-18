@@ -12,7 +12,6 @@ class Entries extends Component {
       <EntriesConsumer>
         {(context) => {
           const { entries } = context
-          console.log(entries)
           return (
             <div className="mt-2 entries">
               <h1>Entries</h1>
